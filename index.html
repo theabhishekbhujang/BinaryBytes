@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BinaryBytes - Your News Aggregator</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="./assets/logo.jpg">
+    <script>
+      if (!sessionStorage.getItem("loggedInUser")) {
+          window.location.href = "login.html";
+      }
+  </script>
+  
+</head>
+<body onload="checkAuth()">
+    <header>
+        <a href="index.html">
+            <img src="./assets/logo.jpg" alt="BinaryBytes Logo" class="logo">
+        </a>
+        <h1>BinaryBytes</h1>
+        <p>Your Daily Dose of Digital News</p><br><br>
+        <button onclick="logoutUser()" class="logout-btn">Logout</button>
+    </header>
+
+    <input type="text" id="searchInput" placeholder="Search news...">
+    <div class="filters">
+        <select id="categoryFilter">
+            <option value="general">🗞️All Categories</option>
+            <option value="technology">🤖 Technology</option>
+            <option value="sports">🎾Sports</option>
+            <option value="business">🤑Business</option>
+            <option value="entertainment">🎥Entertainment</option>
+            <option value="health">😷Health</option>
+        </select>
+    </div>
+
+    <div id="loadingSpinner" class="hidden">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="errorMessage" class="hidden"><br><br>
+        <center><p>⚠️ Failed to load news. Check your network connection and try again!</p><br>
+        <button onclick="fetchNews()">Retry</button></center>
+    </div>
+
+    <div id="newsContainer"></div>
+
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
